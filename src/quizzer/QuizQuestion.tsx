@@ -12,7 +12,14 @@ export const QuizQuestion = ({
     handleSubmit,
     addPoints,
     editQuestionSub
-}: {}) => {
+}: {
+    index: number;
+    question: Question;
+    submitted: boolean;
+    handleSubmit: (indy:number)=>void;
+    addPoints: (points:number)=>void;
+    editQuestionSub: (questionId:number, ele:string)=>void;
+}) => {
     const handleClick = (e: ChangeEvent) => {
         if (!submitted) {
             editQuestionSub(question.id, e.target.value);

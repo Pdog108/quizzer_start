@@ -11,7 +11,12 @@ export const QuizExpanded = ({
     editQuiz,
     resetView,
     switchEdit
-}: {}) => {
+}: {
+    quiz: Quiz;
+    editQuiz: (questionId: number, q:Quiz) => void;
+    resetView: () => void;
+    switchEdit: () => void;
+}) => {
     const filteredQuestions = quiz.questionList.filter(
         (q: Question): boolean =>
             (quiz.published && q.published) || !quiz.published
@@ -53,7 +58,11 @@ export const QuizExpanded = ({
         editQuiz(quiz.id, {
             ...quiz,
             questionList: quiz.questionList.map(
-            )
+                (q: Question): Question => (
+                    q.id === questionId
+                    ? { ...q, submission: sub, options: [...q.options] }
+                    : q
+                ))
         });
     };
 
