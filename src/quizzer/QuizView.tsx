@@ -5,21 +5,23 @@ import { QuizEdit } from "./QuizEdit";
 
 import "./QuizView.css";
 
+interface quizViewProps {
+    quiz: Quiz,
+    editQuiz: (quizId: number, quiz: Quiz) => void,
+    deleteQuiz: (quizId: number) => void,
+    resetView: () => void
+}
+
 export const QuizView = ({
     quiz,
     editQuiz,
     deleteQuiz,
     resetView
-}: {
-    quiz: Quiz;
-    editQuiz: (questionId: number, q:Quiz)=>void;
-    deleteQuiz: (questionId:number)=>void;
-    resetView: ()=>void;
-}) => {
+}: quizViewProps) => {
     const [edit, setEdit] = useState(false);
 
     const switchEdit = () => {
-        setEdit(edit);
+        setEdit(!edit);
     };
 
     return (
@@ -42,4 +44,5 @@ export const QuizView = ({
                 ></QuizExpanded>
             )}
         </div>
-    )};
+    );
+}

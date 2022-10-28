@@ -5,17 +5,19 @@ import { QuizCard } from "./QuizCard";
 import "./QuizList.css";
 import { QuizView } from "./QuizView";
 
+interface quizListProps {
+    quizzes: Quiz[],
+    editQuiz: (quizId: number, quiz: Quiz) => void,
+    deleteQuiz: (qId: number) => void,
+    showModal: () => void
+}
+
 export const QuizList = ({
     quizzes,
     editQuiz,
     deleteQuiz,
     showModal
-}: {
-    quizzes: Quiz[];
-    editQuiz: (questionId: number, q:Quiz)=>void;
-    deleteQuiz: (questionId: number)=>void;
-    showModal: ()=>void;
-}) => {
+}: quizListProps) => {
     const [displayId, setDisplayId] = useState<null | number>(null);
 
     const handleQuizView = (id: number) => {
